@@ -6,9 +6,10 @@ ENV RESOLUTION 1920x1080x24
 
 # setup desktop environment (xfce4), display server (xvfb), vnc server (x11vnc)
 RUN apk add --no-cache \
+  chromium \
+  faenza-icon-theme \
   xfce4 \
   xfce4-terminal \
-  faenza-icon-theme \
   xvfb \
   x11vnc
 
