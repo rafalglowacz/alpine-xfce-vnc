@@ -7,6 +7,7 @@ ENV RESOLUTION 1920x1080x24
 # setup desktop environment (xfce4), display server (xvfb), vnc server (x11vnc)
 RUN apk add --no-cache \
   xfce4 \
+  xfce4-terminal \
   faenza-icon-theme \
   xvfb \
   x11vnc
@@ -30,4 +31,7 @@ RUN apk add --no-cache supervisor && \
   mv /tmp/supervisor-*.ini /etc/supervisor/conf.d/ && \
   rm -fr /tmp/supervisor*
 
-CMD ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
+#
+COPY rootfs /
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -22,11 +22,11 @@ GIT_TAG_LATEST := $(shell git describe --abbrev=0 --tags | sed 's/v//g')
 .PHONY: docker-build
 docker-build: require-docker
 	docker build -t $(DOCKER_IMAGE):base base/
-	docker build -t $(DOCKER_IMAGE):web web/
+	#docker build -t $(DOCKER_IMAGE):web web/
 
 .PHONY: docker-run
 docker-run: require-docker check-param-tag docker-build
-	docker run --rm --name $(DOCKER_IMAGE_NAME) --hostname alpine -p 5900:5900 -p 6080:6080 --security-opt seccomp=unconfined $(DOCKER_IMAGE):${tag}
+	docker run --rm --name $(DOCKER_IMAGE_NAME) --hostname alpine -p 5900:5900 -p 6080:6080 --security-opt seccomp=unconfined -e USER=alpine $(DOCKER_IMAGE):${tag}
 
 .PHONY: docker-clean
 docker-clean: require-docker
