@@ -15,8 +15,6 @@ if [ "$USER" != "root" ]; then
     chown -R $USER:$USER ${HOME}
 fi
 
-sed -i -e "s|%USER%|$USER|" -e "s|%HOME%|$HOME|" /etc/supervisor/conf.d/supervisor-chromium.ini
-sed -i -e "s|%USER%|$USER|" -e "s|%HOME%|$HOME|" /etc/supervisor/conf.d/supervisor-x11vnc.ini
-sed -i -e "s|%USER%|$USER|" -e "s|%HOME%|$HOME|" /etc/supervisor/conf.d/supervisor-xfce4.ini
+sed -i -e "s|%USER%|$USER|" -e "s|%HOME%|$HOME|" /etc/supervisor/conf.d/*
 
 supervisord -c /etc/supervisord.conf -n
